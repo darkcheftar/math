@@ -1,0 +1,93 @@
+:root {
+    --r1: 100px;
+    --r2: 60px;
+}
+* {
+    box-sizing: border-box;
+}
+body {
+    background: grey;
+}
+.state {
+    height: var(--r1);
+    width: var(--r1);
+    background: black;
+    border-radius: 100%;
+    color: white;
+    display: inline-block;
+}
+.state::before {
+    content: attr(data-val);
+    background: transparent;
+    display: inline-block;
+    position: relative;
+    height: var(--r2);
+    width: var(--r2);
+    text-align: center;
+    line-height: var(--r2);
+    border-radius: 100%;
+    top: calc((var(--r1) - var(--r2)) / 2);
+    left: calc((var(--r1) - var(--r2)) / 2);
+    box-shadow: 0 0 0 5px #fff;
+}
+/* div:hover::before{
+    box-shadow: 0 0 0 5px #38d5ef;
+} */
+.active::before {
+    box-shadow: 0 0 0 5px #38d5ef;
+}
+#output {
+    background: black;
+    height: 100px;
+    line-height: 100px;
+    color: white;
+    text-align: center;
+    margin: auto;
+}
+#fsm {
+    position: relative;
+    height: 400px;
+    width: 500px;
+    display: grid;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: repeat(4, minmax(100px, 1fr));
+    grid-template-rows: repeat(3, minmax(100px, 1fr));
+    grid-template-areas:
+        ". . five ."
+        "zero three four one"
+        ". . two .";
+    position: relative;
+    margin: 0 auto;
+    background: transparent;
+}
+[data-val="1"] {
+    grid-area: one;
+}
+[data-val="2"] {
+    grid-area: two;
+}
+[data-val="3"] {
+    grid-area: three;
+}
+[data-val="4"] {
+    grid-area: four;
+}
+[data-val="5"] {
+    grid-area: five;
+}
+[data-val="0"] {
+    grid-area: zero;
+}
+#input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+svg {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    fill: green;
+}
